@@ -30,6 +30,9 @@ def add_model_args(parser):
         "--models",
         nargs="+",
         default=[
+            "relukannet"
+        ],
+        choices =[
             "relukannet",
             "mobilenetv2_100",
             "efficientnet_lite0",
@@ -96,13 +99,16 @@ def get_datasets(dataset_name, batch_size):
 def train_epoch(model, train_loader, optimizer, criterion, device, epoch, total_epochs):
     model.train()
     running_loss = 0.0
+    scaler = torch.cuda.amp.GradScaler()
     for inputs, targets in tqdm(train_loader, desc=f"Training Epoch {epoch}/{total_epochs}", leave=False):
         inputs, targets = inputs.to(device), targets.to(device)
         optimizer.zero_grad()
-        outputs = model(inputs)
-        loss = criterion(outputs, targets)
-        loss.backward()
-        optimizer.step()
+        with torch.cuda.amp.autocast():
+            outputs = model(inputs)
+            loss = criterion(outputs, targets)
+        scaler.scale(loss).backward()
+        scaler.step(optimizer)
+        scaler.update()
         running_loss += loss.item() * inputs.size(0)
     return running_loss / len(train_loader.dataset)
 
@@ -131,6 +137,7 @@ def main():
     args = parse_args()
     train_loader, val_loader, in_channels, num_classes = get_datasets(args.dataset, args.batch_size)
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    print(f"Training on {device}")
     results = {}
 
     # Map model names to their constructors with appropriate in_channels and num_classes.
@@ -190,4 +197,7 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    model = ReluKANNetB0(in_channels=3, num_classes=10, g=3, k=3)
+    print( "number_of_parameters", sum(p.numel() for p in model.parameters()))
+    #main()
+
