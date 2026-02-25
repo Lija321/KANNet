@@ -188,3 +188,4 @@ pyrightconfig.json
 
 venv/
 data/
+*.pt
