@@ -1,0 +1,19 @@
+{
+  "dataset": "cifar10",
+  "model": "tiny_convnet_w32",
+  "seed": 1,
+  "num_classes": 10,
+  "pretrained": false,
+  "img_size": 32,
+  "best_checkpoint": "outputs/runs/cifar10/tiny_convnet_w32/seed1/best.pt",
+  "best_val_top1": 0.6290000081062317,
+  "test_top1": 0.6150000095367432,
+  "test_top5": 0.9549999833106995,
+  "test_roc_auc_macro": null,
+  "test_loss": 1.106804623413086,
+  "exported_weight_path": null,
+  "param_count": 94762,
+  "flops_gmacs": 0.01044608,
+  "throughput_images_per_sec": 3054.2118887543024,
+  "total_train_time_sec": 956.8451223128941
+}

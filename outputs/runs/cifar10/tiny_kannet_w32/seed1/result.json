@@ -1,0 +1,19 @@
+{
+  "dataset": "cifar10",
+  "model": "tiny_kannet_w32",
+  "seed": 1,
+  "num_classes": 10,
+  "pretrained": false,
+  "img_size": 32,
+  "best_checkpoint": "outputs/runs/cifar10/tiny_kannet_w32/seed1/best.pt",
+  "best_val_top1": 0.7278000116348267,
+  "test_top1": 0.7099000215530396,
+  "test_top5": 0.974399983882904,
+  "test_roc_auc_macro": null,
+  "test_loss": 0.8400179153442383,
+  "exported_weight_path": null,
+  "param_count": 1569578,
+  "flops_gmacs": 0.09539712,
+  "throughput_images_per_sec": 3312.038232779399,
+  "total_train_time_sec": 1499.870973523939
+}

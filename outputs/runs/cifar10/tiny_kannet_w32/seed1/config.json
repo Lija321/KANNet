@@ -1,0 +1,13 @@
+{
+  "seed": 1,
+  "num_classes": 10,
+  "epochs": 100,
+  "lr": 0.01,
+  "momentum": 0.9,
+  "weight_decay": 0.0001,
+  "amp": true,
+  "device": "cuda",
+  "use_tqdm": true,
+  "show_ips": true,
+  "tqdm_update_every": 10
+}
