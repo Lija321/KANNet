@@ -1,0 +1,19 @@
+{
+  "dataset": "cifar10",
+  "model": "vgg16",
+  "seed": 0,
+  "num_classes": 10,
+  "pretrained": true,
+  "img_size": 224,
+  "best_checkpoint": "outputs/runs/cifar10/vgg16/seed0/best.pt",
+  "best_val_top1": 0.8185999989509583,
+  "test_top1": 0.8206999897956848,
+  "test_top5": 0.9858999848365784,
+  "test_roc_auc_macro": null,
+  "test_loss": 0.5261728082418442,
+  "exported_weight_path": null,
+  "param_count": 134301514,
+  "flops_gmacs": 15.466234368,
+  "throughput_images_per_sec": 1232.0834308779363,
+  "total_train_time_sec": 1144.6584862780292
+}

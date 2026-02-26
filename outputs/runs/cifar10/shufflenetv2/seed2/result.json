@@ -1,0 +1,19 @@
+{
+  "dataset": "cifar10",
+  "model": "shufflenetv2",
+  "seed": 2,
+  "num_classes": 10,
+  "pretrained": true,
+  "img_size": 224,
+  "best_checkpoint": "outputs/runs/cifar10/shufflenetv2/seed2/best.pt",
+  "best_val_top1": 0.8468000292778015,
+  "test_top1": 0.840399980545044,
+  "test_top5": 0.9890999794006348,
+  "test_roc_auc_macro": null,
+  "test_loss": 0.4536206358909607,
+  "exported_weight_path": null,
+  "param_count": 1263854,
+  "flops_gmacs": 0.147794632,
+  "throughput_images_per_sec": 1241.9222796643528,
+  "total_train_time_sec": 610.3035391820595
+}

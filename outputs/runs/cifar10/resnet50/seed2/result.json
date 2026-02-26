@@ -1,0 +1,19 @@
+{
+  "dataset": "cifar10",
+  "model": "resnet50",
+  "seed": 2,
+  "num_classes": 10,
+  "pretrained": true,
+  "img_size": 224,
+  "best_checkpoint": "outputs/runs/cifar10/resnet50/seed2/best.pt",
+  "best_val_top1": 0.8813999891281128,
+  "test_top1": 0.8756999969482422,
+  "test_top5": 0.991599977016449,
+  "test_roc_auc_macro": null,
+  "test_loss": 0.36553325753211974,
+  "exported_weight_path": null,
+  "param_count": 23528522,
+  "flops_gmacs": 4.109485056,
+  "throughput_images_per_sec": 1220.2886542251972,
+  "total_train_time_sec": 764.1327911170665
+}

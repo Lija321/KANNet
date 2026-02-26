@@ -1,0 +1,19 @@
+{
+  "dataset": "cifar10",
+  "model": "mobilenetv2",
+  "seed": 0,
+  "num_classes": 10,
+  "pretrained": true,
+  "img_size": 224,
+  "best_checkpoint": "outputs/runs/cifar10/mobilenetv2/seed0/best.pt",
+  "best_val_top1": 0.8482000231742859,
+  "test_top1": 0.8472999930381775,
+  "test_top5": 0.989300012588501,
+  "test_roc_auc_macro": null,
+  "test_loss": 0.445307591843605,
+  "exported_weight_path": null,
+  "param_count": 2236682,
+  "flops_gmacs": 0.312926016,
+  "throughput_images_per_sec": 1234.9545860218377,
+  "total_train_time_sec": 682.0534423121717
+}
