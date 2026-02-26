@@ -1,3 +1,4 @@
+#Made with assitance of ChatGPT
 from .trainer import Trainer
 from .utils import set_seed
 
