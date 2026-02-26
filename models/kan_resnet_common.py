@@ -1,21 +1,4 @@
-"""
-KAN-ResNet common backbone with stage-gated KAN replacements.
-
-Features:
-- conv1 (7×7) stays nn.Conv2d
-- 3×3 convs can be replaced with ReluKANOperator2d in selected stages (replace_kan_stages)
-- 1×1 convs can be replaced with KANPointwise2d (no unfold) in selected stages (kan_1x1_stages)
-- Downsample projection handles stride when using KAN 1×1 via AvgPool2d(stride) + KANPointwise2d(stride=1)
-
-Stage indices:
-  1 -> layer1
-  2 -> layer2
-  3 -> layer3
-  4 -> layer4
-
-Recommended for feasibility:
-  replace_kan_stages=(4,) and kan_1x1_stages=(4,)
-"""
+#Made with assitance of ChatGPT
 
 from __future__ import annotations
 

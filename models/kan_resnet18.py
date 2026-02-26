@@ -1,10 +1,4 @@
-"""KAN-ResNet18 wrapper for Conv2d replacement studies (stage-gated 3×3 and 1×1).
-
-Pretrained workflow:
-- Pretrain with `experiments.pretrain_imagenet`.
-- Load with `pretrained=True` and `pretrained_path=...` (or env fallback),
-  then replace the classification head for target `num_classes`.
-"""
+#Made with assitance of ChatGPT
 
 from __future__ import annotations
 

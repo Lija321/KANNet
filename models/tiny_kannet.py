@@ -1,22 +1,4 @@
-"""Tiny KANNet for 32×32 datasets (CIFAR-like).
-
-Goal: isolate KAN 2D operator behavior without blowing up memory.
-Key idea:
-- Use standard convs to downsample early (cheap).
-- Apply ReluKANOperator2d only on small spatial maps (default: at 8×8).
-- Keep channel counts modest.
-
-Architecture (default width=32):
-  stem: Conv3×3 (3 -> 32)              : 32×32
-  stage1: Conv3×3 stride2 (32 -> 64)   : 16×16
-  stage2: Conv3×3 stride2 (64 -> 128)  : 8×8
-  kan:   KANConv3×3 (128 -> 128)       : 8×8
-  head: global avg pool -> linear
-
-Notes:
-- This uses ReluKANOperator2d which internally uses unfold, but only at 8×8 so it’s manageable.
-- If still heavy, set width smaller (e.g., 16) or set apply_kan=False (degenerate).
-"""
+#Made with assitance of ChatGPT
 
 from __future__ import annotations
 

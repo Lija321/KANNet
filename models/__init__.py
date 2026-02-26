@@ -1,3 +1,4 @@
+#Made with assitance of ChatGPT
 from typing import Callable
 
 from .efficientnet_b0 import get_model as efficientnet_b0

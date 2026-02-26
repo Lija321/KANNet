@@ -1,15 +1,4 @@
-"""Tiny ConvNet for 32×32 datasets (CIFAR-like).
-
-Designed as a compute/memory-friendly baseline for operator studies.
-Architecture:
-  stem: conv -> bn -> relu
-  downsample: conv(stride=2) -> bn -> relu   (16×16)
-  downsample: conv(stride=2) -> bn -> relu   (8×8)
-  head: global avg pool -> linear
-
-This keeps everything small and fast.
-"""
-
+#Made with assitance of ChatGPT
 from __future__ import annotations
 
 import torch
@@ -65,7 +54,7 @@ class TinyConvNet(nn.Module):
         x = self.fc(x)
         return x
 
-
+#Made with assitance of ChatGPT
 def get_model(
     num_classes: int,
     pretrained: bool = False,
