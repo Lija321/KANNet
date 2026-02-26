@@ -7,6 +7,8 @@
 #
 # Output folder (repo-relative):
 #   data/imagenet/{train,val}
+#Made with assitance of ChatGPT
+
 
 set -euo pipefail
 
