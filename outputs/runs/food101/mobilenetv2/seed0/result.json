@@ -1,0 +1,19 @@
+{
+  "dataset": "food101",
+  "model": "mobilenetv2",
+  "seed": 0,
+  "num_classes": 101,
+  "pretrained": false,
+  "img_size": 224,
+  "best_checkpoint": "outputs/runs/food101/mobilenetv2/seed0/best.pt",
+  "best_val_top1": 0.6712871193885803,
+  "test_top1": 0.7082772254943848,
+  "test_top5": 0.8977029919624329,
+  "test_roc_auc_macro": null,
+  "test_loss": 1.1116650461489612,
+  "exported_weight_path": null,
+  "param_count": 2353253,
+  "flops_gmacs": 0.313042496,
+  "throughput_images_per_sec": 746.2893129649466,
+  "total_train_time_sec": 6924.624496197328
+}

@@ -1,0 +1,19 @@
+{
+  "dataset": "cifar10",
+  "model": "kan_resnet18_tiny",
+  "seed": 0,
+  "num_classes": 10,
+  "pretrained": false,
+  "img_size": 32,
+  "best_checkpoint": "outputs/runs/cifar10/kan_resnet18_tiny/seed0/best.pt",
+  "best_val_top1": 0.6962000131607056,
+  "test_top1": 0.6947000026702881,
+  "test_top5": 0.9688000082969666,
+  "test_roc_auc_macro": null,
+  "test_loss": 0.8849854969024659,
+  "exported_weight_path": null,
+  "param_count": 21675818,
+  "flops_gmacs": 0.026685696,
+  "throughput_images_per_sec": 2979.3949397643873,
+  "total_train_time_sec": 1483.2050339598209
+}

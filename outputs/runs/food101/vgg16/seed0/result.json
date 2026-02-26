@@ -1,0 +1,19 @@
+{
+  "dataset": "food101",
+  "model": "vgg16",
+  "seed": 0,
+  "num_classes": 101,
+  "pretrained": false,
+  "img_size": 224,
+  "best_checkpoint": "outputs/runs/food101/vgg16/seed0/best.pt",
+  "best_val_top1": 0.6710231304168701,
+  "test_top1": 0.712039589881897,
+  "test_top5": 0.8945742845535278,
+  "test_roc_auc_macro": null,
+  "test_loss": 1.1219412694732742,
+  "exported_weight_path": null,
+  "param_count": 134674341,
+  "flops_gmacs": 15.466607104,
+  "throughput_images_per_sec": 794.3608756996784,
+  "total_train_time_sec": 8291.672944575548
+}

@@ -1,0 +1,19 @@
+{
+  "dataset": "food101",
+  "model": "kan_resnet18_tiny",
+  "seed": 0,
+  "num_classes": 101,
+  "pretrained": false,
+  "img_size": 224,
+  "best_checkpoint": "outputs/runs/food101/kan_resnet18_tiny/seed0/best.pt",
+  "best_val_top1": 0.6384158134460449,
+  "test_top1": 0.6748514771461487,
+  "test_top5": 0.8750495314598083,
+  "test_roc_auc_macro": null,
+  "test_loss": 1.2666613059516,
+  "exported_weight_path": null,
+  "param_count": 21699205,
+  "flops_gmacs": 1.30749952,
+  "throughput_images_per_sec": 756.9346601925213,
+  "total_train_time_sec": 13507.729183524847
+}

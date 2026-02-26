@@ -1,0 +1,19 @@
+{
+  "dataset": "food101",
+  "model": "shufflenetv2",
+  "seed": 0,
+  "num_classes": 101,
+  "pretrained": false,
+  "img_size": 224,
+  "best_checkpoint": "outputs/runs/food101/shufflenetv2/seed0/best.pt",
+  "best_val_top1": 0.6435643434524536,
+  "test_top1": 0.6784554719924927,
+  "test_top5": 0.8817821741104126,
+  "test_roc_auc_macro": null,
+  "test_loss": 1.2270525960686183,
+  "exported_weight_path": null,
+  "param_count": 1357129,
+  "flops_gmacs": 0.147887816,
+  "throughput_images_per_sec": 737.3865548311244,
+  "total_train_time_sec": 7472.276921149343
+}
