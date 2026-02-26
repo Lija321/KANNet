@@ -1,82 +1,93 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-import numpy as np
-from components.ReluKANLayer import ReluKANLayer
+
+# If you keep KANLinear in components.efficient_kan, import it from there.
+# from components.efficient_kan import KANLinear
 from components.efficient_kan import KANLinear
 
 
-# Custom Conv2D module that uses a KAN module (here, the ReluKANLayer) per output channel.
 class ReluKANOperator2d(nn.Module):
-    def __init__(self, in_channels, out_channels, kernel_size, 
-                 stride=1, padding=0, dilation=1, groups=1, kan_module_constructor=None):
-        """\
-        Parameters:
-          - in_channels: Number of channels in the input.
-          - out_channels: Number of output channels (each will have its own KAN module).
-          - kernel_size: Kernel size (int or tuple).
-          - stride, padding, dilation: Convolution parameters.
-          - groups: Not used in this basic implementation.
-          - kan_module_constructor: Optional callable that accepts the flattened patch size and returns a KAN module.
-        """
-        super(ReluKANOperator2d, self).__init__()
+    """
+    Conv2D-like operator implemented as:
+      unfold patches -> KANLinear(patch_size -> out_channels) -> reshape
+
+    This is equivalent to having one independent "kernel" per output channel,
+    but computed in a single vectorized pass (no Python loop over channels).
+    """
+
+    def __init__(
+        self,
+        in_channels: int,
+        out_channels: int,
+        kernel_size,
+        stride=1,
+        padding=0,
+        dilation=1,
+        groups=1,
+        kan_module_constructor=None,
+    ):
+        super().__init__()
+
+        if groups != 1:
+            raise NotImplementedError(
+                "groups != 1 is not supported in this operator yet (would require grouped KANs)."
+            )
+
         self.in_channels = in_channels
         self.out_channels = out_channels
 
-        # Ensure kernel_size, stride, padding, dilation are tuples.
+        # Normalize params to tuples
         self.kernel_size = kernel_size if isinstance(kernel_size, tuple) else (kernel_size, kernel_size)
         self.stride = stride if isinstance(stride, tuple) else (stride, stride)
         self.padding = padding if isinstance(padding, tuple) else (padding, padding)
         self.dilation = dilation if isinstance(dilation, tuple) else (dilation, dilation)
-        self.groups = groups
-        
-        # The flattened patch size: in_channels * kernel_height * kernel_width.
-        self.patch_size = in_channels * self.kernel_size[0] * self.kernel_size[1]
-        
-        # Use the provided kan_module_constructor or default to one that uses ReluKANLayer.
+
+        kH, kW = self.kernel_size
+        self.patch_size = in_channels * kH * kW
+
+        # Default: one KANLinear producing all out_channels at once.
+        # This is analogous to Conv2d weight shape (out_channels, in_channels, kH, kW).
         if kan_module_constructor is None:
-            def default_kan_module_constructor(in_features):
-                # Each KAN module converts a flattened patch to a scalar (output_size=1).
-                return KANLinear(in_features, 1)
-            kan_module_constructor = default_kan_module_constructor
+            self.kan = KANLinear(self.patch_size, out_channels)
+        else:
+            # Expect constructor signature: (in_features, out_features) -> module
+            self.kan = kan_module_constructor(self.patch_size, out_channels)
 
-        # Create one KAN module per output channel.
-        self.kan_modules = nn.ModuleList(
-            [kan_module_constructor(self.patch_size) for _ in range(out_channels)]
-        )
-
-
-    def forward(self, x):
-        # x: (B, in_channels, H, W)
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        # x: (B, C, H, W)
         B, C, H, W = x.shape
-        
-        # Extract sliding patches; shape: (B, patch_size, L) where L is the number of patches.
-        patches = F.unfold(x, kernel_size=self.kernel_size, dilation=self.dilation,
-                           padding=self.padding, stride=self.stride)
-        # Rearrange to (B, L, patch_size)
-        patches = patches.transpose(1, 2)
-        B, L, patch_size = patches.shape
-        
-        # Flatten the patches to shape (B*L, patch_size) for processing.
-        patches_reshaped = patches.reshape(B * L, patch_size)
-        
-        outputs = []
-        for kan in self.kan_modules:
-            # Each KAN module processes the flattened patches.
-            # Expected output shape from ReluKANLayer: (B*L, 1, 1)
-            out = kan(patches_reshaped)
-            # Reshape to (B, L)
-            out = out.view(B, L)
-            outputs.append(out)
-        
-        # Stack along a new channel dimension: (B, out_channels, L)
-        out_tensor = torch.stack(outputs, dim=1)
-        
-        # Calculate output spatial dimensions.
-        H_out = (H + 2*self.padding[0] - self.dilation[0]*(self.kernel_size[0] - 1) - 1) // self.stride[0] + 1
-        W_out = (W + 2*self.padding[1] - self.dilation[1]*(self.kernel_size[1] - 1) - 1) // self.stride[1] + 1
-        
-        # Reshape to (B, out_channels, H_out, W_out)
-        out_tensor = out_tensor.view(B, self.out_channels, H_out, W_out)
+        assert C == self.in_channels, f"Expected {self.in_channels} channels, got {C}"
 
-        return out_tensor
+        # Extract sliding patches: (B, patch_size, L)
+        patches = F.unfold(
+            x,
+            kernel_size=self.kernel_size,
+            dilation=self.dilation,
+            padding=self.padding,
+            stride=self.stride,
+        )
+        # (B, L, patch_size)
+        patches = patches.transpose(1, 2).contiguous()
+        B, L, P = patches.shape
+        assert P == self.patch_size
+
+        # Flatten to (B*L, patch_size)
+        patches_flat = patches.view(B * L, P)
+
+        # Vectorized KAN: (B*L, out_channels)
+        out = self.kan(patches_flat)
+
+        # Reshape back to (B, out_channels, H_out, W_out)
+        # Compute output spatial dims (same as conv formula)
+        kH, kW = self.kernel_size
+        sH, sW = self.stride
+        pH, pW = self.padding
+        dH, dW = self.dilation
+
+        H_out = (H + 2 * pH - dH * (kH - 1) - 1) // sH + 1
+        W_out = (W + 2 * pW - dW * (kW - 1) - 1) // sW + 1
+
+        out = out.view(B, L, self.out_channels).permute(0, 2, 1).contiguous()
+        out = out.view(B, self.out_channels, H_out, W_out)
+        return out
