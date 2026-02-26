@@ -1,3 +1,6 @@
+#https://github.com/quiqi/relu_kan/blob/main/torch_relu_kan.py
+#The Layer was slightly modified with assitance from ChatGPT to improve perfromance
+
 import torch
 import torch.nn as nn
 import numpy as np

@@ -1,9 +1,10 @@
+#The Operator Was made with assitance from ChatGPT
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-# If you keep KANLinear in components.efficient_kan, import it from there.
-# from components.efficient_kan import KANLinear
+
 from components.efficient_kan import KANLinear
 
 
