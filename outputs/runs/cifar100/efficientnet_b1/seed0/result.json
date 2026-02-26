@@ -1,0 +1,19 @@
+{
+  "dataset": "cifar100",
+  "model": "efficientnet_b1",
+  "seed": 0,
+  "num_classes": 100,
+  "pretrained": false,
+  "img_size": 32,
+  "best_checkpoint": "outputs/runs/cifar100/efficientnet_b1/seed0/best.pt",
+  "best_val_top1": 0.34860000014305115,
+  "test_top1": 0.3418999910354614,
+  "test_top5": 0.635699987411499,
+  "test_roc_auc_macro": null,
+  "test_loss": 2.87932947845459,
+  "exported_weight_path": null,
+  "param_count": 6641284,
+  "flops_gmacs": 0.013267712,
+  "throughput_images_per_sec": 2762.013188423343,
+  "total_train_time_sec": 2742.9594440460205
+}

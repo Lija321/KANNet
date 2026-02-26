@@ -1,0 +1,19 @@
+{
+  "dataset": "oxford_pets",
+  "model": "resnet50",
+  "seed": 0,
+  "num_classes": 37,
+  "pretrained": false,
+  "img_size": 224,
+  "best_checkpoint": "outputs/runs/oxford_pets/resnet50/seed0/best.pt",
+  "best_val_top1": 0.36141303181648254,
+  "test_top1": 0.28045788407325745,
+  "test_top5": 0.630416989326477,
+  "test_roc_auc_macro": null,
+  "test_loss": 2.7911743390589394,
+  "exported_weight_path": null,
+  "param_count": 23583845,
+  "flops_gmacs": 4.109540352,
+  "throughput_images_per_sec": 643.2620005019622,
+  "total_train_time_sec": 480.8871349010151
+}

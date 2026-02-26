@@ -1,0 +1,19 @@
+{
+  "dataset": "oxford_pets",
+  "model": "efficientnet_b0",
+  "seed": 0,
+  "num_classes": 37,
+  "pretrained": false,
+  "img_size": 224,
+  "best_checkpoint": "outputs/runs/oxford_pets/efficientnet_b0/seed0/best.pt",
+  "best_val_top1": 0.54347825050354,
+  "test_top1": 0.4407195448875427,
+  "test_top5": 0.7778686285018921,
+  "test_roc_auc_macro": null,
+  "test_loss": 1.9709214763246268,
+  "exported_weight_path": null,
+  "param_count": 4054945,
+  "flops_gmacs": 0.400426752,
+  "throughput_images_per_sec": 661.1376940267594,
+  "total_train_time_sec": 494.13895188388415
+}

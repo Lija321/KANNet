@@ -1,0 +1,19 @@
+{
+  "dataset": "oxford_pets",
+  "model": "vgg16",
+  "seed": 0,
+  "num_classes": 37,
+  "pretrained": false,
+  "img_size": 224,
+  "best_checkpoint": "outputs/runs/oxford_pets/vgg16/seed0/best.pt",
+  "best_val_top1": 0.19021739065647125,
+  "test_top1": 0.17470701038837433,
+  "test_top5": 0.49386754631996155,
+  "test_roc_auc_macro": null,
+  "test_loss": 2.976467810914379,
+  "exported_weight_path": null,
+  "param_count": 134412133,
+  "flops_gmacs": 15.46634496,
+  "throughput_images_per_sec": 743.9338315919231,
+  "total_train_time_sec": 548.3957903569099
+}

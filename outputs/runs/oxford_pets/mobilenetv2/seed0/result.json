@@ -1,0 +1,19 @@
+{
+  "dataset": "oxford_pets",
+  "model": "mobilenetv2",
+  "seed": 0,
+  "num_classes": 37,
+  "pretrained": false,
+  "img_size": 224,
+  "best_checkpoint": "outputs/runs/oxford_pets/mobilenetv2/seed0/best.pt",
+  "best_val_top1": 0.4836956560611725,
+  "test_top1": 0.3717634379863739,
+  "test_top5": 0.707822322845459,
+  "test_roc_auc_macro": null,
+  "test_loss": 2.33645383672904,
+  "exported_weight_path": null,
+  "param_count": 2271269,
+  "flops_gmacs": 0.312960576,
+  "throughput_images_per_sec": 695.8894371375064,
+  "total_train_time_sec": 473.89766321820207
+}
