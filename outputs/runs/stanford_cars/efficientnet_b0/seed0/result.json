@@ -1,0 +1,19 @@
+{
+  "dataset": "stanford_cars",
+  "model": "efficientnet_b0",
+  "seed": 0,
+  "num_classes": 196,
+  "pretrained": false,
+  "img_size": 224,
+  "best_checkpoint": "outputs/runs/stanford_cars/efficientnet_b0/seed0/best.pt",
+  "best_val_top1": 0.2555282413959503,
+  "test_top1": 0.2589230239391327,
+  "test_top5": 0.5190896391868591,
+  "test_roc_auc_macro": null,
+  "test_loss": 3.2948308892991913,
+  "exported_weight_path": null,
+  "param_count": 4258624,
+  "flops_gmacs": 0.400630272,
+  "throughput_images_per_sec": 468.56993724319085,
+  "total_train_time_sec": 1394.1607000378426
+}

@@ -1,0 +1,19 @@
+{
+  "dataset": "stanford_cars",
+  "model": "mobilenetv2",
+  "seed": 0,
+  "num_classes": 196,
+  "pretrained": false,
+  "img_size": 224,
+  "best_checkpoint": "outputs/runs/stanford_cars/mobilenetv2/seed0/best.pt",
+  "best_val_top1": 0.273955762386322,
+  "test_top1": 0.28317373991012573,
+  "test_top5": 0.5394851565361023,
+  "test_roc_auc_macro": null,
+  "test_loss": 3.2012277144636183,
+  "exported_weight_path": null,
+  "param_count": 2474948,
+  "flops_gmacs": 0.313164096,
+  "throughput_images_per_sec": 490.55341429533684,
+  "total_train_time_sec": 1347.1772860931233
+}

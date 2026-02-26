@@ -1,0 +1,19 @@
+{
+  "dataset": "stanford_cars",
+  "model": "shufflenetv2",
+  "seed": 0,
+  "num_classes": 196,
+  "pretrained": false,
+  "img_size": 224,
+  "best_checkpoint": "outputs/runs/stanford_cars/shufflenetv2/seed0/best.pt",
+  "best_val_top1": 0.19533169269561768,
+  "test_top1": 0.1892799437046051,
+  "test_top5": 0.4210919141769409,
+  "test_roc_auc_macro": null,
+  "test_loss": 3.6818205438255003,
+  "exported_weight_path": null,
+  "param_count": 1454504,
+  "flops_gmacs": 0.147985096,
+  "throughput_images_per_sec": 492.34361041212736,
+  "total_train_time_sec": 1357.9505748709198
+}

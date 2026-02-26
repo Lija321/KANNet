@@ -1,0 +1,19 @@
+{
+  "dataset": "stanford_cars",
+  "model": "resnet18",
+  "seed": 0,
+  "num_classes": 196,
+  "pretrained": false,
+  "img_size": 224,
+  "best_checkpoint": "outputs/runs/stanford_cars/resnet18/seed0/best.pt",
+  "best_val_top1": 0.27272728085517883,
+  "test_top1": 0.27297601103782654,
+  "test_top5": 0.5299091935157776,
+  "test_roc_auc_macro": null,
+  "test_loss": 3.284844727321075,
+  "exported_weight_path": null,
+  "param_count": 11277060,
+  "flops_gmacs": 1.818654208,
+  "throughput_images_per_sec": 491.55492195364627,
+  "total_train_time_sec": 1331.2185383490287
+}

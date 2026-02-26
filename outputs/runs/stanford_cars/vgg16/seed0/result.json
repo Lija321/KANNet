@@ -1,0 +1,19 @@
+{
+  "dataset": "stanford_cars",
+  "model": "vgg16",
+  "seed": 0,
+  "num_classes": 196,
+  "pretrained": false,
+  "img_size": 224,
+  "best_checkpoint": "outputs/runs/stanford_cars/vgg16/seed0/best.pt",
+  "best_val_top1": 0.057739559561014175,
+  "test_top1": 0.053724661469459534,
+  "test_top5": 0.15433403849601746,
+  "test_roc_auc_macro": null,
+  "test_loss": 4.820888178130018,
+  "exported_weight_path": null,
+  "param_count": 135063556,
+  "flops_gmacs": 15.466996224,
+  "throughput_images_per_sec": 510.04215949709675,
+  "total_train_time_sec": 1375.7973280181177
+}
