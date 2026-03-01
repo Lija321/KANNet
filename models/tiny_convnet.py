@@ -31,6 +31,12 @@ class TinyConvNet(nn.Module):
             nn.ReLU(inplace=True),
         )
 
+        self.stage3 = nn.Sequential(
+                nn.Conv2d(c3, c3, kernel_size=3, stride=1, padding=1, bias=False),
+                nn.BatchNorm2d(c3),
+                nn.ReLU(inplace=True),
+            )
+
         self.pool = nn.AdaptiveAvgPool2d((1, 1))
         self.fc = nn.Linear(c3, num_classes)
 
