@@ -1,0 +1,19 @@
+{
+  "dataset": "food101",
+  "model": "efficientnet_b0",
+  "seed": 0,
+  "num_classes": 101,
+  "pretrained": false,
+  "img_size": 224,
+  "best_checkpoint": "outputs/runs/food101/efficientnet_b0/seed0/best.pt",
+  "best_val_top1": 0.7103630304336548,
+  "test_top1": 0.7477623820304871,
+  "test_top5": 0.9149307012557983,
+  "test_roc_auc_macro": null,
+  "test_loss": 0.9510864491580736,
+  "exported_weight_path": null,
+  "param_count": 4136929,
+  "flops_gmacs": 0.400508672,
+  "throughput_images_per_sec": 707.5031888780146,
+  "total_train_time_sec": 7575.377280473709
+}
